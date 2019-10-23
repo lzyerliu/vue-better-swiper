@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.11/dist/vue.min.js"></script>
+  <script src="../vue-swiper.js"></script>
+  <title>Vue Swiper</title>
+  <style>
+    html,body{
+      margin: 0;
+    }
+    .swiper-img{
+      width: 100%;
+      height: 100%;
+    }
+    .plugin-name{
+      margin: 50px 0 0;
+      font-size: 24px;
+      text-align: center;
+      color: #333;
+    }
+    .for-vue-js{
+      margin: 0 0 60px;
+      text-align: center;
+      color: #666;
+    }
+    .desc{
+      margin: 32px 0 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #666;
+    }
+    .dot-cont{
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9;
+    }
+    .dot-cont .dot{
+      display: inline-block;
+      margin: 0 12px 0 0;
+      width: 10px;
+      height: 10px;
+      background: #e1e1e1;
+      border-radius: 100%;
+      z-index: 10;
+    }
+    .dot-cont .dot.dot-active{
+      background: #108ee9;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1 class="plugin-name">Vue Swiper</h1>
+    <p class="for-vue-js">Vue.js 2.x</p>
+
+    <div class="desc">default indicator:</div>
+    <zy-swiper @change="swiperChange" height="160px" autoplay="5000">
+      <zy-swiper-item v-for="(img, index) in images" :key="index">
+        <img :src="img.src" alt="" class="swiper-img">
+      </zy-swiper-item>
+    </zy-swiper>
+
+    <div class="desc">custom indicator:</div>
+    <zy-swiper @change="swiperChange" height="160px" autoplay="5000">
+      <div v-if="images.length > 1" slot="indicator" slot-scope="scope" class="dot-cont">
+        <div v-for="(itm, index) in scope.indicator.len" :key="index" class="dot" :class="{ 'dot-active': scope.indicator.current === index }"></div>
+      </div>
+      <zy-swiper-item v-for="(img, index) in images" :key="index">
+        <img :src="img.src" alt="" class="swiper-img">
+      </zy-swiper-item>
+    </zy-swiper>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      images: [
+        { src: 'http://chzflive.caihome.cn/web/o_1c7390v9q1al1rak17g2v3uhc438?x-oss-process=image/resize,m_fill,h_240,w_320' },
+        { src: 'http://chzflive.caihome.cn/web/o_1c7390v9q1al1rak17g2v3uhc438?x-oss-process=image/resize,m_fill,h_240,w_320' },
+        { src: 'http://chzflive.caihome.cn/web/o_1c7390v9q1al1rak17g2v3uhc438?x-oss-process=image/resize,m_fill,h_240,w_320' }
+      ]
+    },
+    methods: {
+      swiperChange: function (index) {
+        console.log(index)
+      }
+    }
+  })
+</script>
+</html>

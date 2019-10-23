@@ -7,7 +7,7 @@
     @touchmove="moving"
     @touchend="moveEnd">
     <slot></slot>
-    <slot name="indicator">
+    <slot name="indicator" :indicator="{current: active, len: items.length}">
       <div class="indicator">{{ (active + 1) + '/' + items.length }}</div>
     </slot>
   </div>
@@ -197,7 +197,7 @@ export default {
   position: absolute;
   right: 16px;
   bottom: 8px;
-  padding: 0 14px;
+  padding: 0 12px;
   height: 24px;
   line-height: 24px;
   border-radius: 50px;
