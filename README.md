@@ -19,13 +19,25 @@ Vue.use(VueBetterSwiper)
 ```
 
 ```html
-// component name : zy-swiper, zy-swiper-item
+<!-- component name : zy-swiper, zy-swiper-item -->
 <template>
+
   <zy-swiper @change="swiperChange" height="160px" autoplay="5000">
     <zy-swiper-item v-for="(img, index) in images" :key="index">
       <img :src="img.src" alt="" class="swiper-img">
     </zy-swiper-item>
   </zy-swiper>
+
+  <!-- custom indicator -->
+  <zy-swiper @change="swiperChange" height="160px" autoplay="5000">
+    <div v-if="images.length > 1" slot="indicator" slot-scope="scope" class="dot-cont">
+      <div v-for="(itm, index) in scope.indicator.len" :key="index" class="dot" :class="{ 'dot-active': scope.indicator.current === index }"></div>
+    </div>
+    <zy-swiper-item v-for="(img, index) in images" :key="index">
+      <img :src="img.src" alt="" class="swiper-img">
+    </zy-swiper-item>
+  </zy-swiper>
+
 </template>
 ```
 
