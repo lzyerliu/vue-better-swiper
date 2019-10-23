@@ -2,16 +2,18 @@
 
 > Vue component for mobile swiper.
 
-## github
-https://github.com/lzyerliu/vue-better-swiper
+## demo
+[https://lzyerliu.github.io/vue-better-swiper](https://lzyerliu.github.io/vue-better-swiper/dist/demo/index.html)
 
-## Use
+## Usage
 
 ``` bash
 # install
 npm install vue-better-swiper
+```
 
-# import
+```js
+// import
 import VueBetterSwiper from 'vue-better-swiper'
 Vue.use(VueBetterSwiper)
 ```
